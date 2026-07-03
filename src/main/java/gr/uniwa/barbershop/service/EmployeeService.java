@@ -86,15 +86,30 @@ public class EmployeeService {
             BigDecimal completedTotal =
                     appointmentDAO.completedServiceTotal(employeeId, from, to);
 
-            BigDecimal commission = completedTotal
-                    .multiply(e.getCommissionRate())
-                    .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
-
-            return e.getBaseSalary().add(commission).setScale(2, RoundingMode.HALF_UP);
+            return computeEarnings(e.getBaseSalary(), e.getCommissionRate(), completedTotal);
 
         } catch (SQLException ex) {
             throw new BusinessException("Αποτυχία υπολογισμού απολαβών.", ex);
         }
+    }
+
+    /**
+     * Pure earnings formula (no database): base salary + commission, where
+     * commission = completedTotal * commissionRate / 100, rounded to 2 decimals.
+     * Extracted as a static method so it can be unit-tested directly.
+     *
+     * @param baseSalary     the employee's base salary (&ge; 0)
+     * @param commissionRate commission percentage, 0..100
+     * @param completedTotal sum of completed-service prices in the period (&ge; 0)
+     * @return total earnings, scaled to 2 decimals
+     */
+    public static BigDecimal computeEarnings(BigDecimal baseSalary,
+                                             BigDecimal commissionRate,
+                                             BigDecimal completedTotal) {
+        BigDecimal commission = completedTotal
+                .multiply(commissionRate)
+                .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+        return baseSalary.add(commission).setScale(2, RoundingMode.HALF_UP);
     }
 
     private void requireAdmin() throws BusinessException {
