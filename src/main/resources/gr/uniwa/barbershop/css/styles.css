@@ -1,0 +1,208 @@
+/* =====================================================================
+   Barbershop Management  -  Modern theme
+   Place at: src/main/resources/gr/uniwa/barbershop/css/styles.css
+   (App.java loads it automatically if present.)
+   ===================================================================== */
+
+/* ---------- Base ---------- */
+.root {
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: #f1f5f9;          /* slate-100 */
+
+    /* shared palette */
+    accent: #3b82f6;                        /* blue-500  */
+    accent-dark: #2563eb;                   /* blue-600  */
+    ink: #1e293b;                           /* slate-800 */
+    muted: #64748b;                         /* slate-500 */
+    danger: #ef4444;                        /* red-500   */
+    card: #ffffff;
+    line: #e2e8f0;                          /* slate-200 */
+}
+
+.label { -fx-text-fill: ink; }
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+    -fx-background-color: linear-gradient(to bottom, #1e293b, #0f172a);
+}
+.brand {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 6 2;
+}
+.welcome {
+    -fx-text-fill: #e2e8f0;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+.role-badge {
+    -fx-text-fill: #93c5fd;                 /* blue-300 */
+    -fx-font-size: 11px;
+    -fx-padding: 2 0 0 0;
+}
+
+/* Sidebar navigation buttons */
+.nav-button {
+    -fx-background-color: rgba(255,255,255,0.06);
+    -fx-text-fill: white;
+    -fx-base: transparent;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 14;
+    -fx-background-radius: 8;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+}
+.nav-button .text {
+    -fx-fill: white;
+}
+.nav-button:hover {
+    -fx-background-color: rgba(255,255,255,0.10);
+    -fx-text-fill: white;
+}
+.nav-button:pressed {
+    -fx-background-color: rgba(255,255,255,0.18);
+}
+
+.logout-button {
+    -fx-background-color: #dc2626;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 14;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+.logout-button:hover { -fx-background-color: #b91c1c; }
+
+/* ---------- Content area ---------- */
+.content-area { -fx-background-color: #f1f5f9; }
+
+.placeholder {
+    -fx-font-size: 15px;
+    -fx-text-fill: muted;
+}
+
+/* ---------- Generic buttons (content screens) ---------- */
+.button {
+    -fx-base: #ffffff;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: line;
+    -fx-border-width: 1;
+    -fx-padding: 8 16;
+    -fx-font-size: 13px;
+    -fx-text-fill: ink;
+    -fx-cursor: hand;
+}
+.button:hover  { -fx-base: #f8fafc; }
+.button:pressed { -fx-base: #e2e8f0; }
+
+/* Coloured action buttons still set -fx-base inline in the FXML
+   (blue for save, red for delete); rounding/padding above apply to them too. */
+
+/* ---------- Text inputs ---------- */
+.text-field, .text-area, .combo-box, .date-picker {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: line;
+    -fx-border-width: 1;
+    -fx-background-color: card;
+    -fx-padding: 2;
+}
+.text-field, .text-area {
+    -fx-padding: 7 10;
+    -fx-prompt-text-fill: #94a3b8;
+}
+.text-field:focused,
+.text-area:focused,
+.combo-box:focused,
+.date-picker:focused {
+    -fx-border-color: accent;
+    -fx-effect: dropshadow(gaussian, rgba(59,130,246,0.25), 6, 0, 0, 0);
+}
+
+/* ---------- ComboBox / DatePicker internals ---------- */
+.combo-box .list-cell { -fx-padding: 6 10; -fx-text-fill: ink; }
+.combo-box-popup .list-view {
+    -fx-background-color: card;
+    -fx-border-color: line;
+    -fx-background-radius: 8;
+}
+.combo-box-popup .list-cell:hover,
+.combo-box-popup .list-cell:filled:selected {
+    -fx-background-color: #eff6ff;          /* blue-50 */
+    -fx-text-fill: accent-dark;
+}
+
+/* ---------- TableView ---------- */
+.table-view {
+    -fx-background-color: card;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: line;
+    -fx-border-width: 1;
+    -fx-padding: 0;
+}
+.table-view .column-header-background {
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 10 10 0 0;
+}
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: transparent;
+    -fx-size: 40;
+    -fx-border-color: transparent transparent line transparent;
+}
+.table-view .column-header .label {
+    -fx-text-fill: muted;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+}
+.table-row-cell {
+    -fx-background-color: card;
+    -fx-border-color: transparent transparent #f1f5f9 transparent;
+    -fx-table-cell-border-color: transparent;
+}
+.table-row-cell:odd { -fx-background-color: #fbfcfe; }
+.table-row-cell:hover { -fx-background-color: #f1f5f9; }
+.table-row-cell:filled:selected {
+    -fx-background-color: #dbeafe;          /* blue-100 */
+}
+.table-row-cell:filled:selected .text { -fx-fill: ink; }
+.table-view .table-cell {
+    -fx-padding: 9 12;
+    -fx-text-fill: ink;
+}
+
+/* ---------- CheckBox ---------- */
+.check-box .box {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: line;
+    -fx-background-color: card;
+}
+.check-box:selected .mark { -fx-background-color: white; }
+.check-box:selected .box  { -fx-background-color: accent; -fx-border-color: accent; }
+
+/* ---------- Separator ---------- */
+.separator .line { -fx-border-color: line; }
+
+/* ---------- Scrollbars ---------- */
+.scroll-bar { -fx-background-color: transparent; }
+.scroll-bar .thumb {
+    -fx-background-color: #cbd5e1;
+    -fx-background-radius: 8;
+}
+.scroll-bar .thumb:hover { -fx-background-color: #94a3b8; }
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button { -fx-opacity: 0; -fx-padding: 0 6; }
+
+/* ---------- Login screen ---------- */
+.login-card {
+    -fx-background-color: card;
+    -fx-background-radius: 14;
+    -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.12), 18, 0, 0, 6);
+}

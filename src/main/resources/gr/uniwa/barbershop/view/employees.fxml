@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="gr.uniwa.barbershop.controller.EmployeeController"
+      spacing="12.0">
+    <padding>
+        <Insets top="4" right="4" bottom="4" left="4"/>
+    </padding>
+
+    <Label text="Διαχείριση Εργαζομένων"
+           style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <TableView fx:id="employeeTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colName"       text="Ονοματεπώνυμο" prefWidth="180"/>
+            <TableColumn fx:id="colSpecialty"  text="Ειδικότητα"    prefWidth="140"/>
+            <TableColumn fx:id="colSalary"     text="Βασικός (€)"   prefWidth="110"/>
+            <TableColumn fx:id="colCommission" text="Προμήθεια (%)" prefWidth="120"/>
+            <TableColumn fx:id="colActive"     text="Ενεργός"       prefWidth="80"/>
+        </columns>
+    </TableView>
+
+    <Separator/>
+
+    <Label fx:id="formTitle" text="Νέος Εργαζόμενος"
+           style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+    <GridPane hgap="10.0" vgap="8.0">
+        <columnConstraints>
+            <ColumnConstraints minWidth="120"/>
+            <ColumnConstraints minWidth="170" hgrow="SOMETIMES"/>
+            <ColumnConstraints minWidth="120"/>
+            <ColumnConstraints minWidth="170" hgrow="SOMETIMES"/>
+        </columnConstraints>
+
+        <Label text="Όνομα *"          GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="firstNameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Επώνυμο *"        GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+        <TextField fx:id="lastNameField"  GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+        <Label text="Τηλέφωνο"         GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="phoneField"     GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Ειδικότητα"       GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+        <TextField fx:id="specialtyField" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+        <Label text="Βασικός μισθός (€)" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="salaryField"   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Προμήθεια (%)"    GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+        <TextField fx:id="commissionField" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+
+        <Label text="Ενεργός"          GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <CheckBox fx:id="activeCheck" selected="true"
+                  GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <HBox spacing="8.0">
+        <Button text="Καθαρισμός / Νέος" onAction="#clearForm"/>
+        <Button text="Αποθήκευση" onAction="#saveEmployee"
+                style="-fx-base: #2980b9;"/>
+        <Button text="Απενεργοποίηση" onAction="#deactivateEmployee"
+                style="-fx-base: #c0392b;"/>
+    </HBox>
+
+    <Separator/>
+
+    <!-- Earnings calculation -->
+    <Label text="Υπολογισμός Απολαβών (επιλεγμένου εργαζομένου)"
+           style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+    <HBox spacing="8.0" alignment="CENTER_LEFT">
+        <Label text="Από:"/>
+        <DatePicker fx:id="fromDate"/>
+        <Label text="Έως:"/>
+        <DatePicker fx:id="toDate"/>
+        <Button text="Υπολογισμός" onAction="#calculateEarnings"/>
+        <Label fx:id="earningsLabel" text=""
+               style="-fx-font-weight: bold; -fx-text-fill: #1e8449;"/>
+    </HBox>
+</VBox>

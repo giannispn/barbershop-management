@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="gr.uniwa.barbershop.controller.ServiceController"
+      spacing="12.0">
+    <padding>
+        <Insets top="4" right="4" bottom="4" left="4"/>
+    </padding>
+
+    <Label text="Διαχείριση Υπηρεσιών"
+           style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <TableView fx:id="serviceTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colName"     text="Υπηρεσία"        prefWidth="220"/>
+            <TableColumn fx:id="colPrice"    text="Τιμή (€)"        prefWidth="100"/>
+            <TableColumn fx:id="colDuration" text="Διάρκεια (λεπτά)" prefWidth="130"/>
+            <TableColumn fx:id="colActive"   text="Ενεργή"          prefWidth="90"/>
+        </columns>
+    </TableView>
+
+    <Separator/>
+
+    <Label fx:id="formTitle" text="Νέα Υπηρεσία"
+           style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+    <GridPane hgap="10.0" vgap="8.0">
+        <columnConstraints>
+            <ColumnConstraints minWidth="110"/>
+            <ColumnConstraints minWidth="180" hgrow="SOMETIMES"/>
+            <ColumnConstraints minWidth="110"/>
+            <ColumnConstraints minWidth="180" hgrow="SOMETIMES"/>
+        </columnConstraints>
+
+        <Label text="Όνομα *"          GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="nameField"     GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Τιμή (€) *"        GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+        <TextField fx:id="priceField"    GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+        <Label text="Διάρκεια (λεπτά) *" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="durationField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Ενεργή"           GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+        <CheckBox fx:id="activeCheck" selected="true"
+                  GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+        <Label text="Περιγραφή"        GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextArea fx:id="descriptionField" prefRowCount="2"
+                  GridPane.rowIndex="2" GridPane.columnIndex="1"
+                  GridPane.columnSpan="3"/>
+    </GridPane>
+
+    <HBox spacing="8.0">
+        <Button text="Καθαρισμός / Νέα" onAction="#clearForm"/>
+        <Button text="Αποθήκευση" onAction="#saveService"
+                style="-fx-base: #2980b9;"/>
+    </HBox>
+</VBox>
